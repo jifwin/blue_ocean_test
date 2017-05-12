@@ -27,5 +27,10 @@ echo "Build finished"'''
         build 'pipeline_job'
       }
     }
+    stage('') {
+      steps {
+        input 'waiting for prod deploy'
+      }
+    }
   }
 }
