@@ -27,9 +27,14 @@ echo "Build finished"'''
         build 'pipeline_job'
       }
     }
-    stage('') {
+    stage('error') {
       steps {
-        input 'waiting for prod deploy'
+        sleep(unit: 'MINUTES', time: 1)
+      }
+    }
+    stage('done') {
+      steps {
+        echo 'done'
       }
     }
   }
