@@ -19,7 +19,7 @@ echo "Build finished"'''
       steps {
         sh '''echo "Build start"
 sleep 30
-echo "Build finished'''
+echo "Build finished"'''
       }
     }
   }
