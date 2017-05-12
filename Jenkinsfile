@@ -17,9 +17,18 @@ echo "Build finished"'''
     }
     stage('Deploy') {
       steps {
-        sh '''echo "Build start"
+        parallel(
+          "Deploy": {
+            sh '''echo "Build start"
 sleep 30
 echo "Build finished"'''
+            
+          },
+          "deploy2": {
+            input(message: 'deploy to prod', id: 'deploy to prod', ok: 'deploy to prod')
+            
+          }
+        )
       }
     }
     stage('job') {
