@@ -33,7 +33,19 @@ echo "Build finished"'''
     }
     stage('job') {
       steps {
-        build 'pipeline_job'
+        parallel(
+          "job": {
+            build 'pipeline_job'
+            
+          },
+          "": {
+            retry(count: 5) {
+              sh 'a'
+            }
+            
+            
+          }
+        )
       }
     }
     stage('error') {
