@@ -24,7 +24,7 @@ echo "Build finished"'''
     }
     stage('job') {
       steps {
-        build 'test job'
+        build 'pipeline_job'
       }
     }
   }
