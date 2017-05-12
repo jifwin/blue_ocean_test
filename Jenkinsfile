@@ -22,5 +22,10 @@ sleep 30
 echo "Build finished"'''
       }
     }
+    stage('job') {
+      steps {
+        build 'test job'
+      }
+    }
   }
 }
