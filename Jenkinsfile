@@ -38,7 +38,7 @@ echo "Build finished"'''
             build 'pipeline_job'
             
           },
-          "": {
+          "errosdfgr": {
             retry(count: 5) {
               sh 'a'
             }
