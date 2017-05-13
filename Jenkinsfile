@@ -28,7 +28,7 @@ echo "Build finished"'''
             input(message: 'deploy to prod', id: 'deploy to prod', ok: 'deploy to prod')
             
           },
-          "": {
+          "error": {
             sh 'echo "10" > revision'
             stash(name: 'stash', includes: 'revision')
             
@@ -43,8 +43,8 @@ echo "Build finished"'''
             build 'pipeline_job'
             
           },
-          "": {
-            unstash 'revision'
+          "error": {
+            unstash 'stash'
             sh 'cat revision'
             
           }
