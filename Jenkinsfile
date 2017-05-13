@@ -4,14 +4,14 @@ pipeline {
     stage('Sync') {
       steps {
         sh '''echo "Sync start"
-sleep 5
+sleep 1
 echo "Sync finished"'''
       }
     }
     stage('Build') {
       steps {
         sh '''echo "Build start"
-sleep 15
+sleep 2
 echo "Build finished"'''
       }
     }
@@ -20,12 +20,17 @@ echo "Build finished"'''
         parallel(
           "Deploy": {
             sh '''echo "Build start"
-sleep 30
+sleep 2
 echo "Build finished"'''
             
           },
           "deploy2": {
             input(message: 'deploy to prod', id: 'deploy to prod', ok: 'deploy to prod')
+            
+          },
+          "": {
+            sh 'echo "10" > revision'
+            stash(name: 'stash', includes: 'revision')
             
           }
         )
@@ -38,11 +43,9 @@ echo "Build finished"'''
             build 'pipeline_job'
             
           },
-          "errosdfgr": {
-            retry(count: 5) {
-              sh 'a'
-            }
-            
+          "": {
+            unstash 'revision'
+            sh 'cat revision'
             
           }
         )
